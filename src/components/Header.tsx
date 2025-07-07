@@ -124,14 +124,16 @@ const Header: React.FC = () => {
 
         <ul className="flex items-center gap-2">
           <li>
-            <Image
-                className="md:w-4 lg:w-6"
-                src="/images/cart.svg"
-                alt="cart icon"
-                width={24}
-                height ={24}
-                priority
-              />
+            <Link href={"/cart"}>
+              <Image
+                  className="md:w-4 lg:w-6"
+                  src="/images/cart.svg"
+                  alt="cart icon"
+                  width={24}
+                  height ={24}
+                  priority
+                />
+            </Link>
           </li>
           <li>
             <button

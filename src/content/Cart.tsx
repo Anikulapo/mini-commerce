@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Trash2, Plus, Minus, Tag, ChevronRight } from 'lucide-react';
+import { Trash2, Plus, Minus, Tag, ChevronRight, X , Check} from 'lucide-react';
 
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([
@@ -33,12 +33,22 @@ const ShoppingCart = () => {
       image: '/api/placeholder/100/100'
     }
   ]);
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [orderPlaced, setOrderPlaced] = useState(false)
+  const [orderId, setOrderId] = useState()
 
+  const checkout = ()=>{
+    setIsModalOpen(true)
+    setOrderId(new Date.now)
+
+  }
+
+  
   const [promoCode, setPromoCode] = useState('');
   const discountPercentage = 20;
   const deliveryFee = 15;
 
-  const updateQuantity = (id, change) => {
+  const updateQuantity = (id :number , change:number) => {
     setCartItems(items =>
       items.map(item =>
         item.id === id
@@ -48,7 +58,7 @@ const ShoppingCart = () => {
     );
   };
 
-  const removeItem = (id) => {
+  const removeItem = (id:number) => {
     setCartItems(items => items.filter(item => item.id !== id));
   };
 
@@ -171,10 +181,105 @@ const ShoppingCart = () => {
               </div>
 
               {/* Checkout Button */}
-              <button className="group w-full bg-black text-white py-4 rounded-full font-medium text-lg hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+              <button
+              onClick={checkout}
+              className="group w-full bg-black text-white py-4 rounded-full font-medium text-lg hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
                 Go to Checkout
                 <ChevronRight className="w-5 h-5 transform transition-all duration-700 ease-in-out group-hover:translate-x-3" />
               </button>
+
+
+
+
+
+               {/* Modal Overlay */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full max-h-screen overflow-y-auto">
+            {!orderPlaced ? (
+              <>
+                {/* Modal Header */}
+                <div className="flex items-center justify-between p-6 border-b">
+                  <h2 className="text-xl font-bold text-gray-800">Order Summary</h2>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Order Details */}
+                <div className="p-6">
+                  <div className="mb-4">
+                    <p className="text-sm text-gray-600 mb-2">Order ID: {new Date.now()}</p>
+                  </div>
+
+                  {/* Items List */}
+                  <div className="space-y-3 mb-6">
+                    {cartItems.map(item => (
+                      <div key={item.id} className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <span className="text-lg">{item.image}</span>
+                          <div>
+                            <h3 className="font-medium text-sm">{item.name}</h3>
+                            <p className="text-gray-600 text-xs">Qty: {item.quantity}</p>
+                          </div>
+                        </div>
+                        <span className="font-semibold text-sm">${item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Pricing Breakdown */}
+                  <div className="border-t pt-4 space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span>Subtotal</span>
+                      <span>${subtotal}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>Shipping</span>
+                      <span>${deliveryFee}</span>
+                    </div>
+                    <div className="flex justify-between font-bold text-lg border-t pt-2">
+                      <span>Total</span>
+                      <span>${total}</span>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                {/* Modal Footer */}
+                <div className="flex space-x-3 p-6 border-t">
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handlePlaceOrder}
+                    className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
+                  >
+                    Confirm Order
+                  </button>
+                </div>
+              </>
+            ) : (
+              /* Order Confirmation */
+              <div className="p-8 text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Check size={32} className="text-green-600" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">Order Placed!</h2>
+                <p className="text-gray-600 mb-4">Thank you for your order. You'll receive a confirmation email shortly.</p>
+                <p className="text-sm text-gray-500">Order ID: {sampleOrder.id}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
             </div>
           </div>
         </div>

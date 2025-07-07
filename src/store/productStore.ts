@@ -10,7 +10,7 @@ type Product = {
   slug: string
   category: string
   subcategory: string
-  gender: 'Men' | 'Women'
+  gender: string
   rating: number
   price?: number
   newPrice?: number
