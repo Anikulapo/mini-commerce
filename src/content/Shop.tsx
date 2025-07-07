@@ -1,7 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useCategory } from "@/store/category";
 
 const Shop: React.FC = () => {
+      const {setCategory} = useCategory()
+      
+        const handleClick = ( )=>{
+          setCategory("all")
+        }
   return (
     <>
       <div className="pt-20 md:pt-10 bg-[#F2F0F1] w-full">
@@ -29,7 +37,7 @@ const Shop: React.FC = () => {
               of style.
             </p>
 
-            <Link href={"/catalogue"}>
+            <Link onClick={handleClick} href={"/catalogue"}>
               <button
                 className="text-white bg-black rounded-full hidden md:block
                                   transition-all duration-300 ease-in-out
@@ -43,7 +51,7 @@ const Shop: React.FC = () => {
               </button>
             </Link>
 
-            <Link href={"/catalogue"}>
+            <Link onClick={handleClick} href={"/catalogue"}>
               <button
                 className="text-white bg-black rounded-full md:hidden
                                   transition-all duration-300 ease-in-out
