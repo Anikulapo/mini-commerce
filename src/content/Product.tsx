@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Star, Minus, Plus, ChevronRight } from 'lucide-react';
 
-import { useCart } from '@/store/cartStore';
 
  const thumbnails = [
     '/images/prev.png',
@@ -12,7 +11,6 @@ import { useCart } from '@/store/cartStore';
   ];
 
 const Product = () => {
-  const {items, addItems} = useCart()
   const [selectedImage, setSelectedImage] = useState(thumbnails[0]);
   const [selectedSize, setSelectedSize] = useState('Large');
   const [quantity, setQuantity] = useState(1);
