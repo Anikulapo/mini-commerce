@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useProducts } from '@/hooks/useProducts'
 import { useProduct } from "@/store/productStore";
 import { useCategory } from "@/store/category";
+import { useCart } from "@/store/cartStore";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,9 +15,14 @@ const Header: React.FC = () => {
   const { data } = useProducts()
   const { setProducts } = useProduct()
   const {setCategory} = useCategory()
-  
+  const {count} = useCart()
+  const [counted, setCounted] = useState()
+   
 
-
+useEffect(()=>{
+  const word = count()
+  setCounted(word)
+})
    useEffect(() => {
     if (data) {
       setProducts(data)}},[data, setProducts])
@@ -146,7 +152,7 @@ const Header: React.FC = () => {
         </form>
 
         <ul className="flex items-center gap-2">
-          <li>
+          <li className="relative">
             <Link href={"/cart"}>
               <Image
                   className="md:w-4 lg:w-6"
@@ -156,6 +162,11 @@ const Header: React.FC = () => {
                   height ={24}
                   priority
                 />
+                {counted!> 0 && (
+                  <div className="absolute top-[-15%] right-[-15%] bg-black text-white rounded-full md:w-4 md:h-4 w-3 h-3 flex items-center justify-center text-[12px] font-judson font-[500] z-200">
+                    {counted}
+                  </div>
+                )}
             </Link>
           </li>
           <li>
