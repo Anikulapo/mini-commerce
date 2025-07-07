@@ -1,14 +1,19 @@
 'use client'
 
+import toast from 'react-hot-toast'
 import { create } from 'zustand'
 import { persist, subscribeWithSelector } from 'zustand/middleware'
 
 type CartItem = {
   id: string
+  slug: string
   name: string
-  price: number
-  image: string
+  title: string
+  price: number | undefined
+  newPrice?: number
+  image: string[]
   quantity: number
+  selectedSize: string
 }
 
 interface CartState {
@@ -48,6 +53,7 @@ export const useCartStore = create<CartState>()(
         set((state) => ({
           items: state.items.filter((i) => i.id !== id),
         }))
+        toast.error("Item has been Removed From the cart")
       },
 
       updateQuantity: (id, quantity) => {
@@ -62,18 +68,16 @@ export const useCartStore = create<CartState>()(
         set({ items: [] })
       },
 
-      total: () => 
-        get().items.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        ),
+      total: () =>
+        get().items.reduce((sum, item) => {
+          const unitPrice = item.newPrice ?? item.price
+          return sum + unitPrice! * item.quantity
+        }, 0),
 
       count: () =>
         get().items.reduce((sum, item) => sum + item.quantity, 0),
     })),
-    {
-      name: 'cart',
-    }
+    { name: 'cart' }
   )
 )
 

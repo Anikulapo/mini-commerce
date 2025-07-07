@@ -12,6 +12,7 @@ import Browse from '@/content/Browse'
 import Reviews from '@/content/Reviews'
 
 export default function Home() {
+  
   const { data, isLoading, error } = useProducts()
   const { setProducts } = useProduct()
 
@@ -21,6 +22,7 @@ export default function Home() {
   useEffect(() => {
     if (data) {
       setProducts(data)
+
 
       const onSaleProducts = data
         .filter((product : Product) => product.newPrice != null)
@@ -32,6 +34,8 @@ export default function Home() {
         .slice(0, 4)
       setRated(topRated)
     }
+
+    
   }, [data, setProducts])
 
   if (isLoading) {

@@ -13,7 +13,7 @@ import { useCart } from '@/store/cartStore';
 
 const Product = () => {
   const {items, addItems} = useCart()
-    const [selectedImage, setSelectedImage] = useState(thumbnails[0]);
+  const [selectedImage, setSelectedImage] = useState(thumbnails[0]);
   const [selectedSize, setSelectedSize] = useState('Large');
   const [quantity, setQuantity] = useState(1);
 
@@ -35,7 +35,7 @@ const Product = () => {
   }
 
   return (
-    <div className=" bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[3%]">
+    <div className=" bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[7%]">
       {/* Header */}
 
       {/* Breadcrumb */}

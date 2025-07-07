@@ -3,11 +3,23 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
+import { useProducts } from '@/hooks/useProducts'
+import { useProduct } from "@/store/productStore";
+import { useCategory } from "@/store/category";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [flip, setFlip] = useState(false);
   const [search, setSearch] = useState("");
+  const { data } = useProducts()
+  const { setProducts } = useProduct()
+  const {setCategory} = useCategory()
+  
+
+
+   useEffect(() => {
+    if (data) {
+      setProducts(data)}},[data, setProducts])
 
   const handleFlip = (): void => {
     setFlip(!flip);
@@ -16,6 +28,18 @@ const Header: React.FC = () => {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
+
+   const handleClick2 = ( )=>{
+    setCategory("Sale")
+  }
+
+  const maleClick = ()=>{
+    setCategory("Men")
+  }
+
+  const femaleClick = ()=>{
+    setCategory("Women")
+  }
 
   // Disable/enable scrolling when menu is open/closed
   useEffect(() => {
@@ -71,28 +95,27 @@ const Header: React.FC = () => {
               } `}
             >
               <li className="group font-al text-[14px] p-2 hover:bg-black transition-colors duration-300 rounded-xl hover:text-white mb-2">
-                <a href=""> Men </a>
+                <Link href={"/catalogue"} onClick={maleClick}>Men </Link>
               </li>
               <li className="group font-al text-[14px] p-2 hover:bg-black transition-colors duration-300 rounded-xl hover:text-white">
-                <a href="">Women</a>
+               <Link href={"/catalogue"} onClick={femaleClick}>Women </Link>
               </li>
             </ul>
           </li>
           <li>
-            <a
-              href=""
+
+              <Link
+              onClick={handleClick2} 
+               href={"/catalogue"}
               className="group flex items-center gap-2 font-al text-[12px] lg:text-[16px] relative pb-2"
-            >
-              On Sale
-            </a>
+              >On Sale</Link>
+
           </li>
           <li>
-            <a
-              href=""
+             <Link 
+               href={"/rated"}
               className="group flex items-center gap-2 font-al text-[12px] lg:text-[16px] relative pb-2"
-            >
-              Top Rated
-            </a>
+              >Top Rated</Link>
           </li>
         </ul>
 
@@ -271,18 +294,18 @@ const Header: React.FC = () => {
                 } `}
               >
                 <li className="group font-al text-[14px] p-2 mb-2">
-                  <a href=""> Men </a>
+                  <Link href={"/catalogue"} onClick={maleClick}>Men </Link>
                 </li>
                 <li className="group font-al text-[14px] p-2  transition-colors duration-300 rounded-xl ">
-                  <a href="">Women</a>
+                  <Link href={"/catalogue"} onClick={femaleClick}>Women </Link>
                 </li>
               </ul>
             </li>
             <li className="hover:cursor-pointer hover:text-gray-400 text-left">
-              <a href="">On Sale</a>
+              <Link href={"/catalogue"} onClick={handleClick2}>On Sale </Link>
             </li>
             <li className="hover:cursor-pointer hover:text-gray-400 text-left">
-              <a href="">Top Rated</a>
+              <Link href={"/rated"}>Top Rated </Link>
             </li>
           </ul>
         </div>

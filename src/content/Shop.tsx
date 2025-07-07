@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Shop: React.FC = () => {
   return (
@@ -28,27 +29,30 @@ const Shop: React.FC = () => {
               of style.
             </p>
 
-            <button
+            <Link href={"/catalogue"}>
+              <button
+                className="text-white bg-black rounded-full hidden md:block
+                                  transition-all duration-300 ease-in-out
+                                  transform hover:scale-105
+                                  hover:cursor-pointer hover:shadow-md/50
+                                   md:py-2 md:px-7
+                                   lg:py-3 lg:px-10
+                                   xl:py-4 xl:px-15 "
+              >
+                Shop Now
+              </button>
+            </Link>
 
-              className="text-white bg-black rounded-full hidden md:block
-                                transition-all duration-300 ease-in-out
-                                transform hover:scale-105
-                                hover:cursor-pointer hover:shadow-md/50
-                                 md:py-2 md:px-7 
-                                 lg:py-3 lg:px-10
-                                 xl:py-4 xl:px-15 "
-            >
-              Shop Now
-            </button>
-
-            <button
-              className="text-white bg-black rounded-full md:hidden
-                                transition-all duration-300 ease-in-out
-                                transform hover:scale-105
-                                 w-full py-2 px-10  my-5"
-            >
-              Shop Now
-            </button>
+            <Link href={"/catalogue"}>
+              <button
+                className="text-white bg-black rounded-full md:hidden
+                                  transition-all duration-300 ease-in-out
+                                  transform hover:scale-105
+                                   w-full py-2 px-10  my-5"
+              >
+                Shop Now
+              </button>
+            </Link>
 
             <ul className="flex flex-wrap 
             justify-center items-center

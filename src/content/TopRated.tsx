@@ -1,4 +1,5 @@
 import ClothCard from "@/components/ClothCard";
+import Link from "next/link";
 
 import { Product } from "@/types/Product";
 
@@ -26,18 +27,26 @@ const TopRated: React.FC<Prop> = ({items}) => {
         </div>
 
         {/* Desktop Button */}
-        <button
-          className={`${baseButtonClass} hidden md:block py-2 px-10 mt-10 mb-15 md:py-3 md:px-15 lg:py-3 lg:px-10 xl:py-3 xl:px-20 hover:bg-black hover:text-white`}
+        <Link
+        href ={"/rated"}
         >
-          View All
-        </button>
+          <button
+            className={`${baseButtonClass} hidden md:block py-2 px-10 mt-10 mb-15 md:py-3 md:px-15 lg:py-3 lg:px-10 xl:py-3 xl:px-20 hover:bg-black hover:text-white`}
+          >
+            View All
+          </button>
+        </Link>
 
         {/* Mobile Button */}
-        <button
-          className={`text-black bg-white border border-[rgba(0,0,0,.1)] rounded-full md:hidden w-full py-2 px-10 mt-10 mb-15`}
+        <Link
+        href = {"rated"}
         >
-          View All
-        </button>
+          <button
+            className={`text-black bg-white border border-[rgba(0,0,0,.1)] rounded-full md:hidden w-full py-2 px-10 mt-10 mb-15`}
+          >
+            View All
+          </button>
+        </Link>
       </div>
     </section>
   );
