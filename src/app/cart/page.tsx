@@ -1,8 +1,10 @@
-import Footer from "@/components/Footer";
+import ShoppingCart from "@/content/Cart";
 
 const Cart = ()=>{
   return(
-      <Footer />
+      <div>
+        <ShoppingCart />
+      </div>
   )
 }
 

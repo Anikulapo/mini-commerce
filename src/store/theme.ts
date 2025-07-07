@@ -23,7 +23,7 @@ const applyTheme = (isDarkMode: boolean): void => {
 
 export const useThemeStore = create<ThemeState>()(
   subscribeWithSelector((set, get) => ({
-    // 🚫 Don't call localStorage on init (server)
+
     isDarkMode: false,
 
     toggleTheme: () => {

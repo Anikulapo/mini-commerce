@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-// Define the product type
+
 interface Product {
   id: string;
   title: string;
@@ -19,7 +19,7 @@ interface Product {
   description: string;
 }
 
-// Props interface
+// This component displays a clothing item card with an image, title, rating, and price information.
 interface Props {
   product: Product;
 }
@@ -29,9 +29,9 @@ const ClothCard: React.FC<Props> = ({ product }) => {
     product.newPrice !== undefined && product.oldPrice !== undefined;
 
   return (
-      <div className="flex flex-col gap-[2px] md:gap-2 text-black items-start">
+      <div className="flex flex-col gap-[2px] md:gap-2 text-black items-start w-4/9 md:w-[180px] lg:w-[300px]  ">
         <Image
-          className="rounded-[20px] w-[150px] h-[150px] lg:w-[300px] lg:h-[300px] object-cover"
+          className="rounded-[20px] w-full h-[180px] md:h-[250px] lg:w-[300px] lg:h-[300px] object-cover"
           src={product.image}
           alt={product.title}
           width={150}

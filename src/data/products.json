@@ -9,7 +9,7 @@
     "gender": "Men",
     "rating": 4.5,
     "price": 24.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Graphic+Tee",
+    "image": ["/images/black.png", "/images/black2.png", "/images/black3.png"],
     "description": "This graphic t-shirt is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style whether you're hanging out or heading out."
   },
   {
@@ -23,7 +23,11 @@
     "rating": 4.7,
     "newPrice": 39.99,
     "oldPrice": 54.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Hoodie",
+    "image": [
+      "/images/hoodie.png",
+      "/images/hoodie2.png",
+      "/images/hoodie3.png"
+    ],
     "description": "This classic fit hoodie provides warmth and comfort with a modern style. Made from soft fleece fabric, it’s great for lounging or layering up outdoors."
   },
   {
@@ -36,21 +40,25 @@
     "gender": "Men",
     "rating": 4.2,
     "price": 49.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Jeans",
+    "image": ["/images/jeans.png", "/images/jeans2.png", "/images/jeans3.png"],
     "description": "Our stretch-fit denim jeans blend comfort and durability for everyday wear. The modern cut pairs easily with any top for a clean, casual look."
   },
   {
     "id": "4",
-    "title": "Breathable Sports Shorts",
-    "name": "Sports Shorts",
-    "slug": "sports-shorts",
+    "title": "Nike Sports Pants",
+    "name": "Sports Pants",
+    "slug": "sports-Pants",
     "category": "Gym",
     "subcategory": "Bottoms",
     "gender": "Men",
     "rating": 4.0,
     "newPrice": 29.99,
     "oldPrice": 39.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Sports+Shorts",
+    "image": [
+      "/images/nikeCar.png",
+      "/images/nikeCar2.png",
+      "/images/nikeCar3.png"
+    ],
     "description": "These breathable shorts are built for performance and comfort. Lightweight and quick-drying, they’re perfect for workouts or casual days out."
   },
   {
@@ -63,7 +71,7 @@
     "gender": "Men",
     "rating": 4.6,
     "price": 34.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Joggers",
+    "image": ["/images/jog.png", "/images/jog2.png", "/images/jog3.png"],
     "description": "These joggers combine style and comfort for on-the-go days. The tapered leg and elastic waistband make them ideal for both exercise and lounging."
   },
   {
@@ -77,7 +85,11 @@
     "rating": 4.3,
     "newPrice": 22.99,
     "oldPrice": 32.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Oversized+Tee",
+    "image": [
+      "/images/WomanSweatB.png",
+      "/images/WomanSweatB2.png",
+      "/images/WomanSweatB3.png"
+    ],
     "description": "This oversized tee is a staple for laid-back days. Made from ultra-soft cotton, it’s designed to keep you comfortable all day long with effortless style."
   },
   {
@@ -90,7 +102,7 @@
     "gender": "Women",
     "rating": 4.8,
     "price": 31.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Leggings",
+    "image": ["/images/legg.png", "/images/legg2.png", "/images/legg3.png"],
     "description": "These high-waist leggings hug your body in all the right places. Perfect for yoga, workouts, or running errands, they offer flexibility and style."
   },
   {
@@ -104,7 +116,7 @@
     "rating": 4.4,
     "newPrice": 59.99,
     "oldPrice": 79.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Denim+Jacket",
+    "image": ["/images/den.png", "/images/den2.png", "/images/den3.png"],
     "description": "Layer up in this cropped denim jacket that adds a touch of edge to your outfit. It’s perfect for breezy evenings and pairs well with almost anything."
   },
   {
@@ -117,7 +129,7 @@
     "gender": "Men",
     "rating": 4.6,
     "price": 44.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Crewneck+Sweatshirt",
+    "image": ["/images/luck.png", "/images/luck2.png", "/images/luck3.png"],
     "description": "Stay warm and stylish with this essential crewneck sweatshirt. Made from soft cotton fleece, it’s ideal for layering during chilly days or lounging indoors."
   },
   {
@@ -130,7 +142,7 @@
     "gender": "Women",
     "rating": 4.1,
     "price": 18.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Tank+Top",
+    "image": ["/images/tank.png", "/images/tank2.png", "/images/tank3.png"],
     "description": "This ribbed tank top features a snug fit and a classic scoop neck. Perfect as a base layer or worn on its own for warm, sunny days."
   },
   {
@@ -144,7 +156,11 @@
     "rating": 4.9,
     "newPrice": 74.99,
     "oldPrice": 99.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Trench+Coat",
+    "image": [
+      "/images/trench.png",
+      "/images/trench2.png",
+      "/images/trench3.png"
+    ],
     "description": "This lightweight trench coat adds elegance to any outfit. Crafted with breathable fabric, it’s perfect for spring or fall layering without sacrificing style."
   },
   {
@@ -157,7 +173,7 @@
     "gender": "Men",
     "rating": 4.3,
     "price": 28.99,
-    "image": "https://via.placeholder.com/300x300.png?text=Polo+Shirt",
+    "image": ["/images/CasB.png", "/images/CasB2.png", "/images/CasB3.png"],
     "description": "Upgrade your basics with this slim fit polo shirt. The breathable cotton and tailored cut make it ideal for casual outings or smart-casual events."
   }
 ]

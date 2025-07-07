@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
       {/* Desktop Nav */}
       <nav className="z-50 hidden md:flex items-center justify-between bg-white">
         <h1 className="font-pop lg:text-3xl font-bold md:text-[18px] hover:cursor-pointer">
-          MINI COMMERCE
+          <Link href={"/"}>MINI COMMERCE</Link>
         </h1>
         <ul className="flex gap-6 items-center justify-center pt-2">
           <li

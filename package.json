@@ -16,7 +16,10 @@
     "next-seo": "^6.8.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-paystack": "^6.0.0",
     "react-rating-stars-component": "^2.2.0",
+    "react-spinners": "^0.17.0",
+    "swiper": "^11.2.10",
     "zustand": "^5.0.6"
   },
   "devDependencies": {
