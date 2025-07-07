@@ -16,13 +16,14 @@ const Header: React.FC = () => {
   const { setProducts } = useProduct()
   const {setCategory} = useCategory()
   const {count} = useCart()
-  const [counted, setCounted] = useState()
+  const [counted, setCounted] = useState<number | undefined>();
+
    
 
-useEffect(()=>{
-  const word = count()
-  setCounted(word)
-})
+useEffect(() => {
+  setCounted(count());
+}, [count]);
+
    useEffect(() => {
     if (data) {
       setProducts(data)}},[data, setProducts])
@@ -241,14 +242,21 @@ useEffect(()=>{
               />
             </li>
             <li>
+              <Link href={"/cart"}>
               <Image
-                className="md:w-4 lg:w-6"
-                src="/images/cart.svg"
-                alt="cart icon"
-                width={16}
-                height={16}
-                priority
-              />
+                  className="md:w-4 lg:w-6"
+                  src="/images/cart.svg"
+                  alt="cart icon"
+                  width={16}
+                  height ={16}
+                  priority
+                />
+                {counted!> 0 && (
+                  <div className="absolute top-[-15%] right-[-15%] bg-black text-white rounded-full md:w-4 md:h-4 w-3 h-3 flex items-center justify-center text-[12px] font-judson font-[500] z-200">
+                    {counted}
+                  </div>
+                )}
+            </Link>
 
             </li>
             <li>
