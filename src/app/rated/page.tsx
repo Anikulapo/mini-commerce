@@ -6,10 +6,13 @@ import { useCategory } from "@/store/category";
 import { Product } from "@/types/Product";
 import ClothCard from "@/components/ClothCard";
 import Link from "next/link";
+import { useProducts } from "@/hooks/useProducts";
+import { HashLoader } from "react-spinners";
 
 
 const Catalogue = () => {
   const [items, setItems] = useState<Product[]>([]);
+  const {isLoading} = useProducts()
   const { products } = useProduct();
   const { category } = useCategory();
 
@@ -18,6 +21,19 @@ const Catalogue = () => {
     const word = products.filter((prod)=>prod.rating > 4)
     setItems(word)
   }, [category, products]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <HashLoader
+          color="#000000"
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[10%]">

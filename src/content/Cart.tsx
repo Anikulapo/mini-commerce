@@ -6,7 +6,7 @@ import { useCart } from "@/store/cartStore";
 import toast from "react-hot-toast";
 
 const ShoppingCart = () => {
-  const { items, total, updateQuantity, removeItem, clearCart } = useCart();
+  const { items, total, updateQuantity, removeItem, clearCart, count } = useCart();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -30,6 +30,7 @@ const ShoppingCart = () => {
       setOrderPlaced(false);
     }, 2000);
     clearCart();
+    count()
     toast.success(`Order ${orderId} has been Placed, Thank you`)
   };
 

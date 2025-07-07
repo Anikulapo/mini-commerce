@@ -8,12 +8,15 @@ import { useCart } from '@/store/cartStore';
 import Image from 'next/image';
 import { Product } from '@/types/Product';
 import Link from 'next/link';
+import { HashLoader } from "react-spinners";
 import toast from 'react-hot-toast';
+import { useProducts } from '@/hooks/useProducts';
 
 const ProductPage = () => {
+    const {isLoading} = useProducts()
   const { slug } = useParams();
   const { products } = useProduct();
-  const { addItem } = useCart();
+  const { addItem, count } = useCart();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedImage, setSelectedImage] = useState<string>('');
@@ -55,15 +58,35 @@ const ProductPage = () => {
     toast.success(
         "Item has been added to your Cart"
     )
+    count()
   };
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-lg font-medium text-gray-700">Loading product...</p>
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <HashLoader
+          color="#000000"
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       </div>
     );
   }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <HashLoader
+          color="#000000"
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    )
+  }
+ 
 
   return (
     <div className="bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[5%]">

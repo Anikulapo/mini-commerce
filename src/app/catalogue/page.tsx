@@ -6,9 +6,12 @@ import { useCategory } from "@/store/category";
 import { Product } from "@/types/Product";
 import ClothCard from "@/components/ClothCard";
 import Link from "next/link";
+import { HashLoader } from "react-spinners";
+import { useProducts } from "@/hooks/useProducts";
 
 
 const Catalogue = () => {
+    const {isLoading} = useProducts()
   const [items, setItems] = useState<Product[]>([]);
   const { products } = useProduct();
   const { category, setCategory } = useCategory();
@@ -33,6 +36,19 @@ const Catalogue = () => {
 
   const handleClick = ( )=>{
     setCategory("Sale")
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <HashLoader
+          color="#000000"
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    )
   }
 
   return (
