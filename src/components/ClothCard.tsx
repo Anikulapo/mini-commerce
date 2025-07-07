@@ -1,0 +1,84 @@
+import { Star } from "lucide-react";
+import Image from "next/image";
+import React from "react";
+
+// Define the product type
+interface Product {
+  id: string;
+  title: string;
+  name: string;
+  slug: string;
+  category: string;
+  subcategory: string;
+  gender: string;
+  rating: number;
+  price?: number;
+  newPrice?: number;
+  oldPrice?: number;
+  image: string;
+  description: string;
+}
+
+// Props interface
+interface Props {
+  product: Product;
+}
+
+const ClothCard: React.FC<Props> = ({ product }) => {
+  const hasDiscount =
+    product.newPrice !== undefined && product.oldPrice !== undefined;
+
+  return (
+      <div className="flex flex-col gap-[2px] md:gap-2 text-black items-start">
+        <Image
+          className="rounded-[20px] w-[150px] h-[150px] lg:w-[300px] lg:h-[300px] object-cover"
+          src={product.image}
+          alt={product.title}
+          width={150}
+          height={300}
+          priority
+        />  
+
+        <p className="font-al text-[12px] lg:text-[17px]">{product.title}</p>
+
+        <div className="flex gap-1">
+          {Array.from({ length: Math.round(product.rating) }, (_, index) => (
+            <Star
+              key={index}
+              className="w-3 lg:w-5 h-5 fill-yellow-400 text-yellow-400"
+            />
+          ))}
+        </div>
+
+        {hasDiscount ? (
+          <div className="flex gap-3 items-center justify-center">
+            <p className="font-al font-bold lg:text-xl text-[12px]">
+              ${product.newPrice?.toFixed(2)}
+            </p>
+            <p className="font-al font-bold text-xl text-[rgba(0,0,0,.4)] line-through lg:text-xl text-[12px] pb-[2px]">
+              ${product.oldPrice?.toFixed(2)}
+            </p>
+            <button
+              className="text-[#FF3333] bg-[rgba(255,51,51,.1)] rounded-full 
+                lg:text-xl md:text-[12px] px-2 py-1 mb-[2px]
+                lg:px-4 lg:py-2 font-al text-sm hover:bg-[#FF3333] hover:text-white transition-colors duration-300"
+              title="Discount"
+            >
+              -
+              {(
+                ((product.oldPrice! - product.newPrice!) / product.oldPrice!) *
+                100
+              ).toFixed(0)}
+              %
+            </button>
+          </div>
+        ) : (
+          <p className="font-al font-bold text-xl">
+            ${product.price?.toFixed(2)}
+          </p>
+        )}
+      </div>
+  );
+};
+
+export default ClothCard;
