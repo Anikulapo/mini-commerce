@@ -85,7 +85,7 @@ export const useThemeStore = create<ThemeState>()(
   }))
 )
 
-// Hook for easy access to theme state and actions
+
 export const useTheme = () => {
   const isDarkMode = useThemeStore((state) => state.isDarkMode)
   const toggleTheme = useThemeStore((state) => state.toggleTheme)
@@ -94,7 +94,7 @@ export const useTheme = () => {
   return { isDarkMode, toggleTheme, setTheme }
 }
 
-// Component to initialize theme (use this in your app root)
+
 export const ThemeInitializer = () => {
   const initializeTheme = useThemeStore((state) => state.initializeTheme)
 
