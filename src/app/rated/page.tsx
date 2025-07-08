@@ -1,4 +1,6 @@
 "use client";
+
+
 import { ChevronRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useProduct } from "@/store/productStore";
@@ -11,6 +13,7 @@ import { HashLoader } from "react-spinners";
 
 
 const Catalogue = () => {
+  const {setCategory} = useCategory()
   const [items, setItems] = useState<Product[]>([]);
   const {isLoading} = useProducts()
   const { products } = useProduct();
@@ -35,13 +38,19 @@ const Catalogue = () => {
     )
   }
 
+  const handleClick = ( )=>{
+    setCategory("all")
+  }
+
   return (
-    <div className="bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[10%]">
+    <div className="bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[5%]">
       <div className="max-w-7xl py-4">
-        <nav className="flex items-center space-x-2 text-gray-500 pt-20">
+        <nav className="flex items-center space-x-2 text-gray-500">
           <span className="hover:text-black cursor-pointer"><Link href={"/"}>Home</Link></span>
           <ChevronRight className="w-4 h-4" />
-          <Link href={"/catalogue"}><span className="hover:text-black cursor-pointer">Shop</span></Link>
+          <Link
+          onClick={handleClick}
+          href={"/catalogue"}><span className="hover:text-black cursor-pointer">Shop</span></Link>
         </nav>
       </div>
 

@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import { Star, Minus, Plus, ChevronRight } from 'lucide-react';
-import { useProduct } from '@/store/productStore';
-import { useCart } from '@/store/cartStore';
-import Image from 'next/image';
-import { Product } from '@/types/Product';
-import Link from 'next/link';
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { Star, Minus, Plus, ChevronRight } from "lucide-react";
+import { useProduct } from "@/store/productStore";
+import { useCart } from "@/store/cartStore";
+import Image from "next/image";
+import { Product } from "@/types/Product";
+import Link from "next/link";
 import { HashLoader } from "react-spinners";
-import toast from 'react-hot-toast';
-import { useProducts } from '@/hooks/useProducts';
+import toast from "react-hot-toast";
+import { useProducts } from "@/hooks/useProducts";
 
 const ProductPage = () => {
-    const {isLoading} = useProducts()
+  const { isLoading } = useProducts();
   const { slug } = useParams();
   const { products } = useProduct();
   const { addItem, count } = useCart();
 
   const [product, setProduct] = useState<Product | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string>('');
-  const [selectedSize, setSelectedSize] = useState('Large');
+  const [selectedImage, setSelectedImage] = useState<string>("");
+  const [selectedSize, setSelectedSize] = useState("Large");
   const [quantity, setQuantity] = useState(1);
 
-  const sizes = ['Small', 'Medium', 'Large', 'X-Large'];
+  const sizes = ["Small", "Medium", "Large", "X-Large"];
 
   useEffect(() => {
     if (slug && products.length > 0) {
@@ -55,11 +55,22 @@ const ProductPage = () => {
       quantity,
       selectedSize,
     });
-    toast.success(
-        "Item has been added to your Cart"
-    )
-    count()
+    toast.success("Item has been added to your Cart");
+    count();
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <HashLoader
+          color="#000000"
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -74,28 +85,18 @@ const ProductPage = () => {
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <HashLoader
-          color="#000000"
-          size={50}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </div>
-    )
-  }
- 
-
   return (
     <div className="bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[5%]">
       {/* Breadcrumb */}
       <div className="max-w-7xl py-4">
         <nav className="flex items-center space-x-2 text-gray-500">
-          <Link href="/"><span className="hover:text-black cursor-pointer">Home</span></Link>
+          <Link href="/">
+            <span className="hover:text-black cursor-pointer">Home</span>
+          </Link>
           <ChevronRight className="w-4 h-4" />
-          <Link href="/catalogue"><span className="hover:text-black cursor-pointer">Shop</span></Link>
+          <Link href="/catalogue">
+            <span className="hover:text-black cursor-pointer">Shop</span>
+          </Link>
           <ChevronRight className="w-4 h-4" />
           <span className="text-black">{product.category}</span>
         </nav>
@@ -147,17 +148,16 @@ const ProductPage = () => {
 
             {/* Rating */}
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star
-                    key={star}
-                    className={`w-5 h-5 ${
-                      product.rating >= star
-                        ? 'fill-yellow-400 text-yellow-400'
-                        : 'text-gray-300'
-                    }`}
-                  />
-                ))}
+              <div className="flex gap-1">
+                {Array.from(
+                  { length: Math.round(product.rating) },
+                  (_, index) => (
+                    <Star
+                      key={index}
+                      className="w-3 lg:w-5 h-5 fill-yellow-400 text-yellow-400"
+                    />
+                  )
+                )}
               </div>
               <span className="text-gray-600">{product.rating}/5</span>
             </div>
@@ -187,8 +187,8 @@ const ProductPage = () => {
                     onClick={() => setSelectedSize(size)}
                     className={`px-2 py-2 xl:px-6 xl:py-3 rounded-full transition-all duration-400 ${
                       selectedSize === size
-                        ? 'bg-black text-white border-black'
-                        : 'border-gray-300 bg-[#F0F0F0] text-[rgba(0,0,0,.6)] hover:border-gray-400'
+                        ? "bg-black text-white border-black"
+                        : "border-gray-300 bg-[#F0F0F0] text-[rgba(0,0,0,.6)] hover:border-gray-400"
                     }`}
                   >
                     {size}
@@ -206,7 +206,9 @@ const ProductPage = () => {
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="px-6 py-3 text-lg font-medium">{quantity}</span>
+                <span className="px-6 py-3 text-lg font-medium">
+                  {quantity}
+                </span>
                 <button
                   onClick={incrementQuantity}
                   className="p-1 md:p-3 hover:bg-gray-100 rounded-r-full transition-colors"

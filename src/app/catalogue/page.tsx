@@ -35,7 +35,7 @@ const Catalogue = () => {
   }, [category, products]);
 
   const handleClick = ( )=>{
-    setCategory("Sale")
+    setCategory("all")
   }
 
   if (isLoading) {
