@@ -228,6 +228,10 @@ const ShoppingCart = () => {
                                 <span>${subtotal.toFixed(2)}</span>
                               </div>
                               <div className="flex justify-between text-sm">
+                                <span>Discount</span>
+                                <span>-${discount.toFixed(2)}</span>
+                              </div>
+                              <div className="flex justify-between text-sm">
                                 <span>Shipping</span>
                                 <span>${deliveryFee.toFixed(2)}</span>
                               </div>
