@@ -246,7 +246,7 @@ useEffect(() => {
                 priority
               />
             </li>
-            <li>
+            <li className="relative">
               <Link href={"/cart"}>
               <Image
                   className="md:w-4 lg:w-6"
@@ -256,8 +256,8 @@ useEffect(() => {
                   height ={16}
                   priority
                 />
-                {counted!> 0 && (
-                  <div className="absolute top-[-15%] right-[-15%] bg-black text-white rounded-full md:w-4 md:h-4 w-3 h-3 flex items-center justify-center text-[12px] font-judson font-[500] z-200">
+                {counted! > 0 && (
+                  <div className="absolute top-[-15%] right-[-15%] bg-black text-white rounded-full w-[10px] h-[10px] flex items-center justify-center text-[8px] font-judson font-[500] z-200">
                     {counted}
                   </div>
                 )}
