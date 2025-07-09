@@ -21,16 +21,16 @@ const ClothCard: React.FC<Props> = ({ good }) => {
 
   return (
       <Link href={`/product/${good.slug}`}>
-        <div className="flex flex-col gap-[2px] md:gap-2 text-black items-start w-4/9 md:w-[180px] lg:w-[300px]  ">
+        <div className="flex flex-col gap-[2px] md:gap-2 text-black items-start md:w-[180px] lg:w-[300px]  ">
           <Image
-            className="rounded-[20px] w-full h-[180px] md:h-[250px] lg:w-[300px] lg:h-[300px] object-cover"
+            className="rounded-[20px] w-[140px] h-[180px] md:h-[250px] lg:w-[300px] lg:h-[300px] object-cover"
             src={good.image[0]}
             alt={good.title}
             width={150}
             height={300}
             priority
           />
-          <p className="font-al text-[12px] lg:text-[17px]">{good.title}</p>
+          <p className="font-al text-[12px] lg:text-[17px] w-[140px] md:w-full">{good.title}</p>
           <div className="flex gap-1">
             {Array.from({ length: Math.round(good.rating) }, (_, index) => (
               <Star

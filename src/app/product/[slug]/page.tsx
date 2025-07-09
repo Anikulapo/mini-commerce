@@ -88,7 +88,7 @@ const ProductPage = () => {
   return (
     <div className="bg-white text-black px-[5%] pt-[7%] md:pt-[5%] lg:pt-[5%]">
       {/* Breadcrumb */}
-      <div className="max-w-7xl py-4">
+      <div className="max-w-7xl py-4 pt-[15%] md:pt-4">
         <nav className="flex items-center space-x-2 text-gray-500">
           <Link href="/">
             <span className="hover:text-black cursor-pointer">Home</span>

@@ -38,14 +38,17 @@ useEffect(() => {
 
    const handleClick2 = ( )=>{
     setCategory("Sale")
+    setIsOpen(!isOpen);
   }
 
   const maleClick = ()=>{
     setCategory("Men")
+    setIsOpen(!isOpen);
   }
 
   const femaleClick = ()=>{
     setCategory("Women")
+    setIsOpen(!isOpen);
   }
 
   // Disable/enable scrolling when menu is open/closed
@@ -228,7 +231,9 @@ useEffect(() => {
                 />
               </svg>
             </button>
-            <h1 className="font-pop font-bold">MINI COMMERCE</h1>
+            <Link href={"/"}>
+              <h1 className="font-pop font-bold">MINI COMMERCE</h1>
+            </Link>
           </div>
           <ul className="flex items-center gap-2 z-20">
             <li>
@@ -279,6 +284,7 @@ useEffect(() => {
         {/* Open Menu */}
 
         <div
+          onClick={handleClick}
           className={`bg-[rgba(0,0,0,0.9)] w-full h-screen absolute top-0 left-0 z-10 transition-all duration-400 ease-in-out ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
@@ -293,9 +299,11 @@ useEffect(() => {
               isOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
-            <li onClick={handleFlip} className=" ">
-              <div className="text-left flex items-center gap-2">
-                Shop
+            <li  className=" ">
+              <div
+              onClick={handleFlip}
+              className="text-left flex items-center gap-2">
+                <p >Shop</p>
                 <Image
                   className={`group-hover:scale-y-[-1] transition-transform duration-400 ease-in-out ${
                     flip ? "scale-y-[-1]" : "scale-y-[1]"
@@ -324,7 +332,7 @@ useEffect(() => {
               <Link href={"/catalogue"} onClick={handleClick2}>On Sale </Link>
             </li>
             <li className="hover:cursor-pointer hover:text-gray-400 text-left">
-              <Link href={"/rated"}>Top Rated </Link>
+              <Link onClick={handleClick} href={"/rated"}>Top Rated </Link>
             </li>
           </ul>
         </div>
