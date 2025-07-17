@@ -148,5 +148,5 @@ MIT License — Feel free to use, fork, and modify.
 
 👤 Author
 Tobi Alasoadura
-Frontend Developer & UI Designer
+Frontend Developer
 LinkedIn • GitHub
