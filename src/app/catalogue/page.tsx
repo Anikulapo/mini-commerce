@@ -65,7 +65,7 @@ const Catalogue = () => {
 
       <h1 className="text-black font-bold text-4xl md:text-6xl pb-10 capitalize">{category}</h1>
 
-      <div className="flex flex-wrap gap-7 md:justify-between w-full pb-20">
+      <div className="flex flex-wrap gap-2 xl:justify-between w-full pb-20">
         {items.map((item) => (
           <ClothCard key={item.id} good={item} />
         ))}

@@ -22,7 +22,7 @@ const Header: React.FC = () => {
 
 useEffect(() => {
   setCounted(count());
-}, [count, counted]);
+}, [count]);
 
    useEffect(() => {
     if (data) {

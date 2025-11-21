@@ -1,29 +1,29 @@
-'use client'
+"use client";
 
-import toast from 'react-hot-toast'
-import { create } from 'zustand'
-import { persist, subscribeWithSelector } from 'zustand/middleware'
+import toast from "react-hot-toast";
+import { create } from "zustand";
+import { persist, subscribeWithSelector } from "zustand/middleware";
 
 type CartItem = {
-  id: string
-  slug: string
-  name: string
-  title: string
-  price: number | undefined
-  newPrice?: number
-  image: string[]
-  quantity: number
-  selectedSize: string
-}
+  id: string;
+  slug: string;
+  name: string;
+  title: string;
+  price: number | undefined;
+  newPrice?: number;
+  image: string[];
+  quantity: number;
+  selectedSize: string;
+};
 
 interface CartState {
-  items: CartItem[]
-  addItem: (item: CartItem) => void
-  removeItem: (id: string) => void
-  updateQuantity: (id: string, quantity: number) => void
-  clearCart: () => void
-  total: () => number
-  count: () => number
+  items: CartItem[];
+  addItem: (item: CartItem) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
+  total: () => number;
+  count: () => number;
 }
 
 export const useCartStore = create<CartState>()(
@@ -32,7 +32,7 @@ export const useCartStore = create<CartState>()(
       items: [],
 
       addItem: (item) => {
-        const existing = get().items.find((i) => i.id === item.id)
+        const existing = get().items.find((i) => i.id === item.id);
 
         if (existing) {
           set((state) => ({
@@ -41,55 +41,51 @@ export const useCartStore = create<CartState>()(
                 ? { ...i, quantity: i.quantity + item.quantity }
                 : i
             ),
-          }))
+          }));
         } else {
           set((state) => ({
             items: [...state.items, item],
-          }))
+          }));
         }
       },
 
       removeItem: (id) => {
         set((state) => ({
           items: state.items.filter((i) => i.id !== id),
-        }))
-        toast.error("Item has been Removed From the cart")
+        }));
+        toast.error("Item has been Removed From the cart");
       },
 
       updateQuantity: (id, quantity) => {
         set((state) => ({
-          items: state.items.map((i) =>
-            i.id === id ? { ...i, quantity } : i
-          ),
-        }))
+          items: state.items.map((i) => (i.id === id ? { ...i, quantity } : i)),
+        }));
       },
 
       clearCart: () => {
-        set({ items: [] })
-        
+        set({ items: [] });
       },
 
       total: () =>
         get().items.reduce((sum, item) => {
-          const unitPrice = item.newPrice ?? item.price
-          return sum + unitPrice! * item.quantity
+          const unitPrice = item.newPrice ?? item.price;
+          return sum + unitPrice! * item.quantity;
         }, 0),
 
-      count: () =>
-        get().items.reduce((sum, item) => sum + item.quantity, 0),
+      count: () => get().items.reduce((sum, item) => sum + item.quantity, 0),
     })),
-    { name: 'cart' }
+    { name: "cart" }
   )
-)
+);
 
 export const useCart = () => {
-  const items = useCartStore((state) => state.items)
-  const addItem = useCartStore((state) => state.addItem)
-  const removeItem = useCartStore((state) => state.removeItem)
-  const updateQuantity = useCartStore((state) => state.updateQuantity)
-  const clearCart = useCartStore((state) => state.clearCart)
-  const total = useCartStore((state) => state.total)
-  const count = useCartStore((state) => state.count)
+  const items = useCartStore((state) => state.items);
+  const addItem = useCartStore((state) => state.addItem);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const total = useCartStore((state) => state.total);
+  const count = useCartStore((state) => state.count);
 
   return {
     items,
@@ -99,5 +95,5 @@ export const useCart = () => {
     clearCart,
     total,
     count,
-  }
-}
+  };
+};

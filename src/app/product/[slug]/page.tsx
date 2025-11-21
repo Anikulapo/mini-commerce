@@ -55,8 +55,9 @@ const ProductPage = () => {
       quantity,
       selectedSize,
     });
-    toast.success("Item has been added to your Cart");
     count();
+    toast.success("Item has been added to your Cart");
+    ;
   };
 
   if (isLoading) {
